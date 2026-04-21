@@ -14,19 +14,16 @@ services:
       - key: SECRET_KEY
         generateValue: true
 
-  # Frontend React (Static)
+  # Frontend React
   - type: web
     name: task-frontend
     runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
-    publishPath: dist
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: task-backend
-          property: host
+        value: https://task-backend.onrender.com
 
 databases:
   - name: task-db
