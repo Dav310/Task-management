@@ -15,11 +15,12 @@ services:
         generateValue: true
 
   # Frontend React
-  - type: static
+  - type: web
     name: task-frontend
+    runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
-    publishPath: dist
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         value: https://task-backend.onrender.com
