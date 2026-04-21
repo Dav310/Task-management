@@ -21,6 +21,12 @@ class Settings:
         uri = os.getenv("DATABASE_URL")
         if uri.startswith("postgres://"):
             uri = uri.replace("postgres://", "postgresql://", 1)
+        
+        # Ensure SSL mode if on Render (unless already specified)
+        if "render.com" in uri and "sslmode" not in uri:
+            separator = "&" if "?" in uri else "?"
+            uri = f"{uri}{separator}sslmode=require"
+            
         SQLALCHEMY_DATABASE_URL: str = uri
     else:
         SQLALCHEMY_DATABASE_URL: str = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
