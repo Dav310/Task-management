@@ -1,0 +1,33 @@
+services:
+  # Backend FastAPI
+  - type: web
+    name: task-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: task-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+
+  # Frontend React (Static)
+  - type: web
+    name: task-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: task-backend
+          property: host
+
+databases:
+  - name: task-db
+    plan: free
