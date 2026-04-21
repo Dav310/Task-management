@@ -1,0 +1,174 @@
+:root {
+  --bg-color: #e0e5ec;
+  --text-color: #4a5568;
+  --text-dark: #2d3748;
+  --primary-color: #4f46e5;
+  --shadow-light: #ffffff;
+  --shadow-dark: #a3b1c6;
+  --inner-shadow-light: inset 2px 2px 5px #ffffff;
+  --inner-shadow-dark: inset -2px -2px 5px #a3b1c6;
+  --font-main: "Outfit", "Inter", sans-serif;
+  --priority-low: #10b981;
+  --priority-medium: #f59e0b;
+  --priority-high: #ef4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Neumorphism Utility Classes */
+.neumorph-card {
+  background: var(--bg-color);
+  border-radius: 20px;
+  box-shadow:
+    9px 9px 16px var(--shadow-dark),
+    -9px -9px 16px var(--shadow-light);
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.neumorph-inset {
+  background: var(--bg-color);
+  border-radius: 12px;
+  box-shadow:
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light);
+  border: none;
+  outline: none;
+}
+
+.neumorph-button {
+  background: var(--bg-color);
+  border-radius: 12px;
+  box-shadow:
+    6px 6px 12px var(--shadow-dark),
+    -6px -6px 12px var(--shadow-light);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 10px 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.neumorph-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    8px 8px 15px var(--shadow-dark),
+    -8px -8px 15px var(--shadow-light);
+}
+
+.neumorph-button:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light);
+}
+
+.neumorph-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-color);
+  border-radius: 12px;
+  box-shadow:
+    inset 4px 4px 8px var(--shadow-dark),
+    inset -4px -4px 8px var(--shadow-light);
+  border: none;
+  font-family: var(--font-main);
+  color: var(--text-dark);
+}
+
+.neumorph-input:focus {
+  box-shadow:
+    inset 6px 6px 12px var(--shadow-dark),
+    inset -6px -6px 12px var(--shadow-light);
+  outline: none;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+/* Specific Component Styles */
+.badge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+}
+
+.badge-low {
+  background-color: var(--priority-low);
+}
+.badge-medium {
+  background-color: var(--priority-medium);
+}
+.badge-high {
+  background-color: var(--priority-high);
+}
+
+.status-pending {
+  color: var(--priority-medium);
+}
+.status-completed {
+  color: var(--priority-low);
+}
